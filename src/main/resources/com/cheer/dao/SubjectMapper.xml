@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cheer.dao.SubjectMapper">
+
+    <insert id="insert" >
+        insert into Subject value(default,#{question},#{a},#{b},#{c},#{d},#{key})
+    </insert>
+    <select id="getSubjectList" resultType="com.cheer.pojo.Subject">
+        select * from subject;
+    </select>
+    <select id="checkLogin" resultType="com.cheer.pojo.User">
+        select * from user where username=#{uname}
+    </select>
+    <select id="getXueYuan" resultType="com.cheer.pojo.Xueyuan">
+        select * from xueyuan where name=#{name} and pwd=#{pwd}
+    </select>
+    <select id="getKey" resultType="java.lang.String">
+        SELECT `key` FROM subject
+    </select>
+    <select id="getOne" resultType="com.cheer.pojo.Xueyuan">
+        select * from xueyuan where id=#{id}
+    </select>
+
+    <update id="update">
+        update xueyuan
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="pwd!=pwd">
+                pwd=#{pwd},
+            </if>
+            <if test="yes!=null">
+                yes=#{yes},
+            </if>
+            <if test="no!=null">
+                no=#{no},
+            </if>
+            <if test="nul!=null">
+                nul=#{nul},
+            </if>
+            <if test="result!=null">
+                result=#{result}
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+</mapper>

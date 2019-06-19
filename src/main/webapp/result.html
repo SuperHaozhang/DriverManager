@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        table {
+            margin: 50px auto 0 auto;
+            border-collapse: collapse;
+            text-align: center;
+            vertical-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            width: 100px;
+            height: 30px;
+        }
+        #header{
+            height: 20px;
+            text-align: center;
+        }
+
+        #user,#user1{
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+
+    <h2 align="center">考试成绩单</h2>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+    let requestURL='servlet/OneServlet';
+
+    $(function () {
+        let header = ["姓名", "答对", "答错", "漏答", "分数","是否合格"];
+        let question=["name","yes","no","nul","result","合格"]
+        $.ajax({
+            url: requestURL,
+            method:'GET',
+            dataType:'json',
+            success:function (response) {
+                let $table=$("<table></table>");
+                $('body').append($table);
+                let $tr=$("<tr></tr>");
+                $("table").append($tr);
+                for (let i = 0; i <header.length; i++) {
+                    let $th= $("<th></th>");
+                    $tr.append($th);
+                    switch (i) {
+                        case 0:$th.attr("style","width:120px");
+                            break;
+                        case 1:$th.attr("style","width:120px");
+                            break;
+                        case 2:$th.attr("style","width:120px");
+                            break;
+                        case 3:$th.attr("style","width:120px");
+                            break;
+                        case 4:$th.attr("style","width:120px");
+                            break;
+                    }
+                    $th.html(header[i]);
+                }
+                for (let i = 0; i < response.length; i++) {
+                    let $tr1=$("<tr></tr>");
+                    $("table").append($tr1);
+                    for (let j = 0; j < question.length; j++) {
+                        let $th= $("<td></td>");
+                        $tr1.append($th);
+                        if(j<5){
+                            $th.html(response[i][question[j]]);
+                        }else{
+                            $th.html("<a href='https://www.baidu.com'>"+[question[j]]+"</a>");
+                        }
+
+                    }
+                }
+            }
+        });
+
+
+    });
+
+</script>
+
+
+</body>
+</html>

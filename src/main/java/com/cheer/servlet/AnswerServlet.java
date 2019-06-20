@@ -37,15 +37,18 @@ public class AnswerServlet extends HttpServlet {
         String[] ans = request.getParameterValues("ans");
         int j = 0;
         int k = 0;
+        int n=0;
         for (int i = 0; i <ans.length ; i++) {
             if(ans[i].equals(keyList.get(i).split("：")[1])){
                 j++;
-            }else{
+            }else if(ans[i].equals("F")){
+                n++;
+            }else {
                 k++;
             }
         }
         //System.out.println(j+k);
-        Xueyuan x = new Xueyuan(id,name,null,j,k,0,j);
+        Xueyuan x = new Xueyuan(id,null,null,j,k,n,j*10);
         XueService xueService = new XueyuanImp();
         int update = xueService.update(x);
         writer.println(update);

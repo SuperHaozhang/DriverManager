@@ -50,7 +50,7 @@
         </div>
         <div>
             <label for="03"></label>
-            <input type="radio" name="ans" id="03" value="C"><label><h4 id="a4"></h4></label>
+            <input type="radio" name="ans" id="03" value="C" ><label><h4 id="a4"></h4></label>
         </div>
         <div>
             <label for="04"></label>
@@ -81,15 +81,7 @@
 
 
         $("#sub").click(function () {
-                if($("#01").prop("checked")){
-                    check[num] = $("#01").val();
-                }else if($("#02").prop("checked")){
-                    check[num] = $("#02").val();
-                }else if($("#03").prop("checked")){
-                    check[num] = $("#03").val();
-                }else if($("#04").prop("checked")){
-                    check[num] = $("#04").val();
-                }
+                b(num);
                 $.ajax({
                     url : "servlet/AnswerServlet",
                     data : {
@@ -112,7 +104,7 @@
         $("#last").click(function () {
 
             //$("input[type='radio']").prop("checked","");
-                        if("A"==check[num-1]){
+/*                        if("A"==check[num-1]){
                             $("#01").prop('checked','checked');
                             $("#a0").html("你这一题选择的是A");
                         }else if("B"==check[num-1]){
@@ -124,12 +116,13 @@
                         }else if("D"==check[num-1]){
                             $("#04").prop('checked','checked');
                             $("#a0").html("你这一题选择的是D");
-                        }
+                        }*/
 
-            if(num===0||num===5){
+            if(num===0){
                 return;
             }
             num--;
+            c(num);
             $("input[type='radio']").attr("disabled","disabled");
             $.ajax({
                 url: "servlet/SubjectListServlet",
@@ -144,20 +137,19 @@
 
         $("#next").click(function () {
             $("#a0").html("");
-            //$("input[type='radio']").prop("checked","");
-            if($("#01").prop("checked")){
-                check[num] = $("#01").val();
-            }else if($("#02").prop("checked")){
-                check[num] = $("#02").val();
-            }else if($("#03").prop("checked")){
-                check[num] = $("#03").val();
-            }else if($("#04").prop("checked")){
-                check[num] = $("#04").val();
+            if(check[num]==null){
+                $("input[type='radio']").removeAttr("disabled");
+
             }
+
+            b(num);//判断勾选选项
+
             if(num===5){
                 return;
             }
             num++;
+            c(num);//显示已经作答的答案
+            $("input[type='radio']").prop("checked","");
             $.ajax({
                 url: "servlet/SubjectListServlet",
                 dataType: "json",
@@ -179,6 +171,36 @@
         $("#a5").html(response[num]["d"])
     }
 
+
+    function b(num) {
+        if($("#01").prop("checked")){
+            check[num] = $("#01").val();
+        }else if($("#02").prop("checked")){
+            check[num] = $("#02").val();
+        }else if($("#03").prop("checked")){
+            check[num] = $("#03").val();
+        }else if($("#04").prop("checked")){
+            check[num] = $("#04").val();
+        }else{
+            check[num]="F";
+        }
+    }
+
+    function c(num) {
+        if("A"==check[num]){
+            $("#01").prop('checked','checked');
+            $("#a0").html("你这一题选择的是A");
+        }else if("B"==check[num]){
+            $("#02").prop('checked','checked');
+            $("#a0").html("你这一题选择的是B");
+        }else if("C"==check[num]){
+            $("#03").prop('checked','checked');
+            $("#a0").html("你这一题选择的是C");
+        }else if("D"==check[num]){
+            $("#04").prop('checked','checked');
+            $("#a0").html("你这一题选择的是D");
+        }
+    }
 </script>
 
 </body>

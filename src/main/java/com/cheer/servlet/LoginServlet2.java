@@ -24,7 +24,7 @@ public class LoginServlet2 extends HttpServlet {
         //设置响应编码格式
         response.setContentType("text/html;charset=utf-8");
         //获取请求信息
-        //获取请求信息
+        //获取学员登录信息
         String username=request.getParameter("uname");
         String password =request.getParameter("pwd");
         System.out.println(username+password);
@@ -33,9 +33,9 @@ public class LoginServlet2 extends HttpServlet {
             //获取session对象
             HttpSession hs=request.getSession();
             Xueyuan x = xueService.getXueYuan(username,password);
-            int i = x.getId();
+            int id = x.getId();
             //将用户数据存储到session对象中
-            hs.setAttribute("id",i);
+            hs.setAttribute("id",id);
             hs.setAttribute("username",username);
             //重定向
             response.sendRedirect("/driver/answer1.html");

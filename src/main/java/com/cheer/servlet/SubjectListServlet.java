@@ -23,11 +23,12 @@ public class SubjectListServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter writer = response.getWriter();
+        //调用'题目'业务层数据
         SubjectService subjectService=new SubjectServiceImp();
         List<Subject> list=subjectService.getSubjectList();
+        //使获取后的题目转成json格式
         Gson gson=new Gson();
         String data=gson.toJson(list);
-        //System.out.println(data);
         writer.println(data);
         writer.close();
     }

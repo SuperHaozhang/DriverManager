@@ -28,8 +28,9 @@ public class OneServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         //获取session对象
         HttpSession hs=request.getSession();
-
+        //获取在session中的数据
         int id = (Integer)(hs.getAttribute("id"));
+        //调用'学员'业务层获取学员对象
         XueService xueService = new XueyuanImp();
         Xueyuan x = xueService.getOne(id);
         List<Xueyuan> list = new ArrayList<Xueyuan>();

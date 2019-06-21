@@ -7,6 +7,13 @@ import com.cheer.service.XueService;
 
 public class XueyuanImp implements XueService {
     SubjectMapper subjectMapper = new SubjectMapperImp();
+
+    /**
+     *
+     * @param name 学员的名字
+     * @param pwd   学员的密码
+     * @return
+     */
     @Override
     public Xueyuan getXueYuan(String name, String pwd) {
         Xueyuan x = subjectMapper.getXueYuan(name,pwd);
@@ -18,6 +25,11 @@ public class XueyuanImp implements XueService {
         }
     }
 
+    /**
+     *
+     * @param x 学员的唯一id
+     * @return
+     */
     @Override
     public int update(Xueyuan x) {
         int i = subjectMapper.update(x);
@@ -31,6 +43,11 @@ public class XueyuanImp implements XueService {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Xueyuan getOne(int id) {
         Xueyuan x = subjectMapper.getOne(id);

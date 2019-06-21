@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
         //设置响应编码格式
         response.setContentType("text/html;charset=utf-8");
         //获取请求信息
-        //获取请求信息
+        //获取登录人员名字和密码
         String username=request.getParameter("uname");
         String password =request.getParameter("pwd");
         UserService userService = new UserServiceImp();

@@ -10,6 +10,13 @@ import com.cheer.utils.StringUtils;
 
 public class UserServiceImp implements UserService {
     SubjectMapper subjectMapper = new SubjectMapperImp();
+
+    /**
+     *
+     * @param uname 登录姓名
+     * @param pwd   登录密码
+     * @return
+     */
     @Override
     public boolean checkLogin(String uname, String pwd) {
         User user = subjectMapper.checkLogin(uname);

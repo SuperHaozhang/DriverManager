@@ -66,8 +66,8 @@
 
 
 <script>
-    let num=0;
-    let check=new Array();
+    let num=0;//标记答题的数量。
+    let check=new Array();//创建数组，用于存储答题的值
     $(function () {
         //$("input[type='radio']").prop("checked","");
         $.ajax({
@@ -152,6 +152,8 @@
 
     })
 
+
+    //打印题目
     function a(response,num) {
         $("#a1").html(response[num]["question"])
         $("#a2").html(response[num]["a"])
@@ -160,7 +162,7 @@
         $("#a5").html(response[num]["d"])
     }
 
-
+    //存储选中数据
     function b(num) {
         if($("#01").prop("checked")){
             check[num] = $("#01").val();
@@ -173,6 +175,7 @@
         }
     }
 
+    //校验
     function c(num) {
         //$("input[type='radio']").removeAttr("disabled");
         if("A"==check[num]){

@@ -13,6 +13,12 @@ public class SubjectServiceImp implements SubjectService {
         a.getKey();
     }*/
     SubjectMapper subjectMapper = new SubjectMapperImp();
+
+    /**
+     *
+     * @param sub 题目封装成对象
+     * @return
+     */
     @Override
     public int insert(Subject sub) {
         int i = subjectMapper.insert(sub);
@@ -24,12 +30,20 @@ public class SubjectServiceImp implements SubjectService {
         return i;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Subject> getSubjectList() {
         List<Subject> subjectList=subjectMapper.getSubjectList();
         return subjectList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<String> getKey() {
         List<String> keyList=subjectMapper.getKey();

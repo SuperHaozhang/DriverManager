@@ -41,18 +41,15 @@ public class AnswerServlet extends HttpServlet {
         for (int i = 0; i <ans.length ; i++) {
             if(ans[i].equals(keyList.get(i).split("：")[1])){
                 j++;
-            }else if(ans[i].equals("F")){
-                n++;
             }else {
                 k++;
             }
         }
-        //System.out.println(j+k);
-        Xueyuan x = new Xueyuan(id,null,null,j,k,n,j*10);
+
+        Xueyuan x = new Xueyuan(id,null,null,j,k,keyList.size()-(j+k),j*10);
         XueService xueService = new XueyuanImp();
         int update = xueService.update(x);
         writer.println(update);
         writer.close();
-        //response.sendRedirect("/driver/result.html");
     }
 }

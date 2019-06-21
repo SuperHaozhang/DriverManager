@@ -65,7 +65,7 @@ public class SubjectMapperImp implements SubjectMapper {
             session = sqlSessionFactory.openSession();
             SubjectMapper empMapper = session.getMapper(SubjectMapper.class);
             subjectList=empMapper.getSubjectList();
-            session.commit();
+            //session.commit();
             LOGGER.info(subjectList);
 
         } catch (IOException e) {

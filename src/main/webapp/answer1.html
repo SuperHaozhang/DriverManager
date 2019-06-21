@@ -105,17 +105,21 @@
 
             //$("input[type='radio']").prop("checked","");
 
-
+            $("#next").removeAttr("disabled");
             $.ajax({
                 url: "servlet/SubjectListServlet",
                 dataType: "json",
                 method: "GET",
                 success: function (response) {
                     if(num===0){
+                        $("#last").attr("disabled","disabled");
                         return;
                     }
                     num--;
                     a(response,num);
+                    if(check[num]==null){
+                        $("input[type='radio']").removeAttr("disabled");
+                    }
                     c(num);
                 }
             });
@@ -124,9 +128,8 @@
         })
 
         $("#next").click(function () {
+            $("#last").removeAttr("disabled");
             $("#a0").html("");
-
-
             b(num);//判断勾选选项
             //
             $("input[type='radio']").prop("checked","");
@@ -135,7 +138,9 @@
                 dataType: "json",
                 method: "GET",
                 success: function (response) {
-                    if(num===response.length){
+                    if(num===response.length-1){
+                        $("#next").attr("disabled","disabled");
+
                         return;
                     }
                     num++;
